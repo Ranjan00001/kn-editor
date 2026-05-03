@@ -1,0 +1,53 @@
+{
+  "name": "kn-editor",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./dist/kn-editor.umd.js",
+  "module": "./dist/kn-editor.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/kn-editor.es.js",
+      "require": "./dist/kn-editor.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/kn-editor.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lexical/html": "^0.44.0",
+    "@lexical/link": "^0.44.0",
+    "@lexical/list": "^0.44.0",
+    "@lexical/react": "^0.44.0",
+    "@lexical/rich-text": "^0.44.0",
+    "@lexical/selection": "^0.44.0",
+    "@lexical/utils": "^0.44.0",
+    "lexical": "^0.44.0",
+    "lucide-react": "^1.14.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "sass": "^1.99.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.11",
+    "vite-plugin-dts": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}
