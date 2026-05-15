@@ -1,0 +1,47 @@
+:root {
+  /* Colors */
+  --bg-main: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-hover: #f1f5f9;
+  --bg-hover-dark: #e2e8f0;
+  --bg-active: #e5e5e5;
+  --bg-active-blue: #dbeafe;
+  
+  --border-color: #e2e8f0;
+  --border-color-dark: #cbd5e1;
+  --divider-color: #eeeeee;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #3b82f6;
+
+  --text-main: #1e293b;
+  --text-dark: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-placeholder: #94a3b8;
+  --text-inverse: #ffffff;
+
+  --icon-main: #475569;
+  --icon-hover: #0f172a;
+  --icon-active: #2563eb;
+  --icon-muted: #888888;
+
+  --overlay-bg: rgba(0, 0, 0, 0.4);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 2px rgba(59, 130, 246, 0.2);
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Typography */
+  --font-family: inherit;
+  --font-size-base: 15px;
+  --font-size-sm: 14px;
+}
