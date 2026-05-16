@@ -1,0 +1,325 @@
+@use 'variables';
+
+.kn-editor-container {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-main);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.kn-editor-container:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-color-dark);
+}
+
+.kn-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 4px;
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--bg-active);
+  align-items: center;
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+.kn-editor-toolbar-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--icon-main);
+  transition: background 0.15s ease, color 0.15s ease;
+  font-size: var(--font-size-sm);
+}
+
+.kn-editor-toolbar-btn:hover {
+  background: var(--bg-hover-dark);
+  color: var(--icon-hover);
+}
+
+.kn-editor-toolbar-btn.active {
+  background: var(--bg-active-blue);
+  color: var(--icon-active);
+}
+
+.kn-editor-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--divider-color);
+  margin: 0 4px;
+}
+
+/* Custom Dropdown Styles */
+.kn-editor-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.kn-editor-dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  transition: background-color 0.1s ease;
+}
+
+.kn-editor-dropdown-button:hover {
+  background-color: var(--divider-color);
+}
+
+.kn-editor-dropdown-label {
+  flex: 1;
+  text-align: left;
+  min-width: 40px;
+}
+
+.kn-editor-dropdown-icon {
+  display: flex;
+  align-items: center;
+  color: var(--icon-main);
+}
+
+.kn-editor-dropdown-chevron {
+  color: var(--icon-muted);
+}
+
+.kn-editor-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  margin-top: 4px;
+  background: var(--bg-main);
+  border: 1px solid var(--bg-active);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  min-width: 150px;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.kn-editor-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--text-main);
+  transition: background-color 0.1s ease;
+}
+
+.kn-editor-dropdown-item:hover {
+  background-color: var(--bg-secondary);
+}
+
+.kn-editor-dropdown-item.active {
+  background-color: var(--bg-active);
+}
+
+.kn-editor-dropdown-item-icon {
+  color: var(--icon-main);
+  display: flex;
+  align-items: center;
+}
+
+.kn-editor-inner {
+  position: relative;
+  min-height: 200px;
+  background: var(--bg-main);
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.kn-editor-input {
+  min-height: 200px;
+  padding: 16px;
+  outline: none;
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+  color: var(--text-main);
+}
+
+.kn-editor-placeholder {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: var(--text-placeholder);
+  pointer-events: none;
+  font-size: var(--font-size-base);
+}
+
+/* Base styles for Lexical elements */
+.kn-editor-input p {
+  margin: 0 0 8px 0;
+}
+
+.kn-editor-input h1 { font-size: 24px; font-weight: 600; margin: 16px 0 8px 0; }
+.kn-editor-input h2 { font-size: 20px; font-weight: 600; margin: 16px 0 8px 0; }
+.kn-editor-input h3 { font-size: 18px; font-weight: 600; margin: 16px 0 8px 0; }
+.kn-editor-input ul { padding-left: 24px; margin: 0 0 8px 0; list-style-type: disc; }
+.kn-editor-input ol { padding-left: 24px; margin: 0 0 8px 0; list-style-type: decimal; }
+.kn-editor-input a { color: var(--primary); text-decoration: none; }
+.kn-editor-input a:hover { text-decoration: underline; }
+
+.kn-editor-text-bold { font-weight: bold; }
+.kn-editor-text-italic { font-style: italic; }
+.kn-editor-text-strikethrough { text-decoration: line-through; }
+.kn-editor-text-underline { text-decoration: underline; }
+.kn-editor-text-underlineStrikethrough { text-decoration: underline line-through; }
+
+/* Image Resizer Styles */
+.kn-editor-image-container {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+.kn-editor-image {
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  transition: box-shadow 0.15s ease;
+}
+.kn-editor-image.focused {
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+.kn-editor-image-resizer {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  cursor: nwse-resize;
+  border: 2px solid var(--bg-main);
+  display: none;
+}
+.kn-editor-image-container.focused .kn-editor-image-resizer {
+  display: block;
+}
+
+/* Dialog Styles */
+.kn-editor-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.kn-editor-dialog {
+  background: var(--bg-main);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-family);
+}
+
+.kn-editor-dialog-title {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.kn-editor-dialog-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.kn-editor-dialog-input:focus {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-focus);
+}
+
+.kn-editor-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.kn-editor-dialog-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.kn-editor-dialog-btn.cancel {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.kn-editor-dialog-btn.cancel:hover {
+  background: var(--bg-hover);
+  color: var(--text-dark);
+}
+
+.kn-editor-dialog-btn.submit {
+  background: var(--primary);
+  color: var(--text-inverse);
+}
+
+.kn-editor-dialog-btn.submit:hover {
+  background: var(--primary-hover);
+}
+
+/* Video Node Styles */
+.kn-editor-video-wrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 16px auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.kn-editor-video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
