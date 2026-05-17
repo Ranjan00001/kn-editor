@@ -1,0 +1,64 @@
+# kn-editor
+
+A powerful, customizable, and premium rich text editor built on top of Lexical and React.
+
+## Features
+
+- **Rich Text Editing**: Bold, Italic, Underline, Strikethrough.
+- **Block Formatting**: Headings (H1, H2, H3), Paragraphs, Blockquotes.
+- **Lists**: Ordered and Unordered lists.
+- **Rich Media**:
+  - Insert and resize images via native file picker.
+  - Insert and embed YouTube videos automatically via URL.
+- **Customizable Theming**: Fully styled with SCSS and CSS Custom Properties for easy overriding.
+- **Link Previews**: Custom dialog-based link insertion.
+
+## Installation
+
+```bash
+npm install kn-editor
+```
+
+Ensure you have `@lexical/react` and `lexical` installed as peer dependencies.
+
+## Usage
+
+```tsx
+import React from 'react';
+import { KnEditor } from 'kn-editor';
+import 'kn-editor/dist/style.css'; // Make sure to import the CSS!
+
+export function App() {
+  const handleChange = (htmlContent, editorState) => {
+    console.log('Editor HTML:', htmlContent);
+  };
+
+  return (
+    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+      <h1>My Editor</h1>
+      <KnEditor
+        placeholder="Start typing your masterpiece..."
+        onChange={handleChange}
+      />
+    </div>
+  );
+}
+```
+
+## Theming
+
+`kn-editor` uses CSS custom properties attached to the `:root` pseudo-class. You can easily override these variables in your own stylesheet to match your app's branding.
+
+```css
+:root {
+  --primary: #ff5722; /* Set your brand primary color */
+  --bg-main: #121212; /* Dark mode background */
+  --text-main: #ffffff; /* Dark mode text */
+  --border-color: #333333; /* Dark mode borders */
+  --radius-lg: 12px; /* Extra rounded corners */
+}
+```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request on GitHub.
