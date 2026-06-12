@@ -37,6 +37,7 @@ export function App() {
     <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
       <h1>My Editor</h1>
       <KnEditor
+        value="<p>Hello <b>World</b>!</p>"
         placeholder="Start typing your masterpiece..."
         onChange={handleChange}
       />
@@ -44,6 +45,14 @@ export function App() {
   );
 }
 ```
+
+## Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `value` | `string` | Initial HTML content for the editor. Set once on mount. |
+| `placeholder` | `string` | Placeholder text shown when the editor is empty. |
+| `onChange` | `(html: string, editorState: EditorState) => void` | Called on every change with the current HTML and Lexical EditorState. |
 
 ## Theming
 
@@ -61,4 +70,8 @@ export function App() {
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request on GitHub.
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## For AI agents
+
+See [AGENTS.md](AGENTS.md) for architecture and conventions when working on this codebase.
