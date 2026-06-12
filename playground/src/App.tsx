@@ -12,6 +12,7 @@ function App() {
       <p>This is a separate Vite application importing the <code>kn-editor</code> package as a dependency.</p>
 
       <KnEditor
+        value="<p>Hello <b>World</b>! This is <i>initial</i> content.</p>"
         placeholder="Start typing..."
         onChange={(html, state) => setContent(html)}
       />

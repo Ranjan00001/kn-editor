@@ -12,8 +12,8 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { HeadingNode, QuoteNode } from '@lexical/rich-text';
 import { ListNode, ListItemNode } from '@lexical/list';
 import { AutoLinkNode, LinkNode } from '@lexical/link';
-import { $generateHtmlFromNodes } from '@lexical/html';
-import { EditorState, LexicalEditor } from 'lexical';
+import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html';
+import { $getRoot, $insertNodes, EditorState, LexicalEditor } from 'lexical';
 
 import { ToolbarPlugin } from './plugins/ToolbarPlugin';
 import { ImagePlugin } from './plugins/ImagePlugin';
@@ -27,6 +27,7 @@ export interface KnEditorProps {
     onError?: (error: Error) => void;
     editorState?: string;
   };
+  value?: string;
   onChange?: (html: string, editorState: EditorState) => void;
   placeholder?: string;
 }
@@ -75,6 +76,7 @@ const editorNodes = [
 
 export function KnEditor({
   initialConfig,
+  value,
   onChange,
   placeholder = 'Type something amazing...',
 }: KnEditorProps) {
@@ -82,12 +84,22 @@ export function KnEditor({
     console.error('KnEditor Error:', error);
   };
 
+  const editorStateInitializer = value
+    ? (editor: LexicalEditor) => {
+        const parser = new DOMParser();
+        const dom = parser.parseFromString(value, 'text/html');
+        const nodes = $generateNodesFromDOM(editor, dom);
+        $getRoot().select();
+        $insertNodes(nodes);
+      }
+    : initialConfig?.editorState;
+
   const config = {
     namespace: initialConfig?.namespace || 'KnEditor',
     theme,
     onError: initialConfig?.onError || defaultOnError,
     nodes: editorNodes,
-    editorState: initialConfig?.editorState,
+    editorState: editorStateInitializer,
   };
 
   const handleChange = (editorState: EditorState, editor: LexicalEditor) => {
