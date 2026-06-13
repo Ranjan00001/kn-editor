@@ -40,9 +40,14 @@
   font-size: var(--font-size-sm);
 }
 
-.kn-editor-toolbar-btn:hover {
+.kn-editor-toolbar-btn:hover:not(:disabled) {
   background: var(--bg-hover-dark);
   color: var(--icon-hover);
+}
+
+.kn-editor-toolbar-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .kn-editor-toolbar-btn.active {
@@ -147,6 +152,17 @@
   position: relative;
   min-height: 200px;
   background: var(--bg-main);
+}
+
+.kn-editor-statusbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--divider-color);
+  background: var(--bg-secondary);
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
 }
@@ -187,6 +203,15 @@
 .kn-editor-text-strikethrough { text-decoration: line-through; }
 .kn-editor-text-underline { text-decoration: underline; }
 .kn-editor-text-underlineStrikethrough { text-decoration: underline line-through; }
+.kn-editor-text-code {
+  background: #f1f5f9;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+.kn-editor-text-subscript { vertical-align: sub; font-size: 0.8em; }
+.kn-editor-text-superscript { vertical-align: super; font-size: 0.8em; }
 
 /* Image Resizer Styles */
 .kn-editor-image-container {
@@ -322,4 +347,309 @@
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* Blockquote */
+.kn-editor-input blockquote,
+.kn-editor-quote {
+  border-left: 4px solid var(--primary-light);
+  margin: 8px 0;
+  padding: 8px 16px;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Code Block */
+.kn-editor-code {
+  background: #1e293b;
+  color: #e2e8f0;
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 13px;
+  padding: 16px;
+  margin: 8px 0;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+.kn-editor-tokenComment { color: #6b7280; }
+.kn-editor-tokenPunctuation { color: #e2e8f0; }
+.kn-editor-tokenProperty { color: #f59e0b; }
+.kn-editor-tokenSelector { color: #34d399; }
+.kn-editor-tokenOperator { color: #e2e8f0; }
+.kn-editor-tokenAttr { color: #818cf8; }
+.kn-editor-tokenVariable { color: #f472b6; }
+.kn-editor-tokenFunction { color: #60a5fa; }
+
+/* Horizontal Rule */
+.kn-editor-hr {
+  border: none;
+  border-top: 2px solid var(--border-color);
+  margin: 16px 0;
+  padding: 2px 2px;
+  cursor: pointer;
+}
+
+.kn-editor-hr.selected {
+  border-top-color: var(--primary);
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Table */
+.kn-editor-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+  table-layout: fixed;
+}
+
+.kn-editor-tableCell,
+.kn-editor-tableCellHeader {
+  border: 1px solid var(--border-color-dark);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+  min-width: 60px;
+}
+
+.kn-editor-tableCellHeader {
+  background: var(--bg-secondary);
+  font-weight: 600;
+}
+
+.kn-editor-tableRow:first-child .kn-editor-tableCell {
+  border-top: 2px solid var(--border-color-dark);
+}
+
+/* Color Picker */
+.kn-color-picker-container {
+  position: relative;
+  display: inline-block;
+}
+
+.kn-color-indicator {
+  display: block;
+  width: 14px;
+  height: 3px;
+  margin-top: 1px;
+  border-radius: 1px;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.kn-color-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  margin-top: 4px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+}
+
+.kn-color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+
+.kn-color-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  padding: 0;
+}
+
+.kn-color-swatch:hover {
+  transform: scale(1.2);
+  box-shadow: var(--shadow-sm);
+}
+
+.kn-color-swatch.active {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+/* Emoji Picker */
+.kn-emoji-picker-container {
+  position: relative;
+  display: inline-block;
+}
+
+.kn-emoji-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 20;
+  margin-top: 4px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+}
+
+.kn-emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+}
+
+.kn-emoji-item {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.1s;
+  padding: 0;
+}
+
+.kn-emoji-item:hover {
+  background: var(--bg-hover);
+}
+
+/* Fullscreen */
+.kn-editor-fullscreen {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  border-radius: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.kn-editor-fullscreen .kn-editor-toolbar {
+  border-radius: 0;
+}
+
+.kn-editor-fullscreen .kn-editor-inner {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.kn-editor-fullscreen .kn-editor-input {
+  min-height: 100%;
+}
+
+.kn-editor-fullscreen .kn-editor-statusbar {
+  border-radius: 0;
+}
+
+/* Table Insert Dialog (reuses kn-dialog classes) */
+.kn-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.kn-dialog {
+  background: var(--bg-main);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-family);
+}
+
+.kn-dialog-title {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.kn-dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kn-dialog-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.kn-dialog-input {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kn-dialog-input:focus {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-focus);
+}
+
+.kn-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.kn-dialog-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.kn-dialog-btn-cancel {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.kn-dialog-btn-cancel:hover {
+  background: var(--bg-hover);
+  color: var(--text-dark);
+}
+
+.kn-dialog-btn-confirm {
+  background: var(--primary);
+  color: var(--text-inverse);
+}
+
+.kn-dialog-btn-confirm:hover {
+  background: var(--primary-hover);
 }

@@ -11,10 +11,10 @@ Thanks for your interest in contributing! This guide will help you get started.
 npm install
 ```
 
-3. Start the dev server:
+3. Build the library:
 
 ```bash
-npm run dev
+npm run build
 ```
 
 4. For consumer-like testing, use the playground app:
@@ -23,6 +23,19 @@ npm run dev
 cd playground
 npm install
 npm run dev
+```
+
+## Project structure
+
+```
+src/
+  KnEditor.tsx        - Main editor component
+  config.ts            - Block types, font options, color presets, emoji list
+  nodes/               - Custom Lexical nodes (ImageNode, VideoNode)
+  plugins/             - ToolbarPlugin, ImagePlugin, VideoPlugin, TablePlugin
+  styles/              - SCSS theming (_variables.scss, editor.scss)
+  ui/                  - Dialog, DropDown, ColorPicker, EmojiPicker
+playground/            - Separate Vite app for testing as a package consumer
 ```
 
 ## Making changes
@@ -37,12 +50,20 @@ git checkout -b feat/your-feature-name
 
 2. If adding a new Lexical node, place it in `src/nodes/` and register it in the `editorNodes` array in `KnEditor.tsx`.
 3. If adding a new plugin, place it in `src/plugins/` and include it inside the `<LexicalComposer>` in `KnEditor.tsx`.
-4. Keep the consumer-facing API simple. Prefer flat props over nested configuration objects.
+4. If adding a new toolbar button, add it in `src/plugins/ToolbarPlugin.tsx` — follow the existing pattern for state tracking and command dispatch.
+5. If adding a new UI component (picker, dialog), place it in `src/ui/`.
+6. If adding new configuration (color presets, labels, font options), add it to `src/config.ts`.
+7. Keep the consumer-facing API simple. Prefer flat props over nested configuration objects.
+
+### Lexical version alignment
+
+All `@lexical/*` packages must be on the same version. Mismatched versions cause duplicate `lexical` core installs and TypeScript errors. When upgrading, bump all `@lexical/*` deps together.
 
 ### Code style
 
 - TypeScript for all source files.
 - SCSS for styles, using CSS custom properties for theming.
+- Icons from `lucide-react`.
 - No test framework is set up yet — test your changes manually in the playground.
 
 ### Commit messages
